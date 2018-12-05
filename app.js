@@ -17,8 +17,8 @@ app.set('view engine', 'pug');
 // mongodb connect
 //=======================================================
 mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
-const connStr = 'mongodb://localhost/gongmo';
-mongoose.connect(connStr, { useMongoClient: true });
+const connStr = 'mongodb+srv://YunJeong:arsenal1st!@yunjeongcluster0-cyuda.mongodb.net/test?retryWrites=true';
+mongoose.connect(connStr, {useNewUrlParser: true});
 mongoose.connection.on('error', console.error);
 
 app.use(logger('dev'));
