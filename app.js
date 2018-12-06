@@ -12,6 +12,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.locals.pretty = true;
 // mongodb connect
 mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
 const connStr = 'mongodb+srv://YunJeong:arsenal1st!@yunjeongcluster0-cyuda.mongodb.net/test?retryWrites=true';

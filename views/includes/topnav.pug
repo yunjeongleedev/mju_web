@@ -1,26 +1,34 @@
 .header.clearfix
-  nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+  nav.navbar.navbar-expand-md.navbar-light.fixed-top(style = 'background-color: #6C5B7B')
     .container
-      a.navbar-brand(href="/") 공구
+      a.navbar-brand(href="/")
+        font(color = '#FFFFFF') 공구
       button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarsExampleDefault", aria-controls="navbarsExampleDefault", aria-expanded="false", aria-label="Toggle navigation")
         span.navbar-toggler-icon
 
       #navbarsExampleDefault.collapse.navbar-collapse
         ul.navbar-nav.ml-auto
           li.nav-item
-            a.nav-link(href="/gongmo") 공모전
+            a.nav-link(href="/gongmo")
+              font(color = '#FFFFFF') 공모전
           li.nav-item
-            a.nav-link(href="/activity") 대외활동
+            a.nav-link(href="/activity")
+              font(color = '#FFFFFF') 대외활동
           li.nav-item
-            a.nav-link(href="/community") 커뮤니티
+            a.nav-link(href="/community")
+              font(color = '#FFFFFF') 커뮤니티
           if (!currentUser) 
             li.nav-item
-              a.nav-link(href='/signin') 로그인
+              a.nav-link(href='/signin')
+                font(color = '#FFFFFF') 로그인
             li.nav-item
-              a.nav-link(href='/users/new') 회원가입
+              a.nav-link(href='/users/new')
+                font(color = '#FFFFFF') 회원가입
           else
             li.nav-item
-              a.nav-link(href=`/users/${currentUser._id}`) 마이페이지
+              a.nav-link(href=`/users/${currentUser._id}`)
+                font(color = '#FFFFFF') 마이페이지
             li.nav-item
-              a.nav-link(href='/signout') 로그아웃
+              a.nav-link(href='/signout')
+                font(color = '#FFFFFF') 로그아웃
         
