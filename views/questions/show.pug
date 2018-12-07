@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title New Question
+    form(action="/questions", method="POST")
+      include _form
+      button(class = "btn btn-outline-info" type="submit") Post Your Question
+
+    
