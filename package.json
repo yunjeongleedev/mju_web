@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "async-error-catcher": "^1.2.0",
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -25,8 +26,14 @@
     "mongoose-paginate": "^5.0.3",
     "morgan": "~1.9.0",
     "node-sass-middleware": "0.11.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "passport.socket.io": "0.0.0",
+    "passport.socketio": "^3.7.0",
     "pug": "2.0.0-beta11",
     "serve": "^10.1.1",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.2.0"
   }
 }

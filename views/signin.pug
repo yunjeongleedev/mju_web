@@ -15,15 +15,13 @@ block content
           type='password', id='password', name='password', class='form-control', 
           placeholder='Password', required, autofocus
         )
-        .checkbox
-          label 
-            input(type="checkbox", value="remember-me")
-            |
-            | Remember me
-        button.btn.btn-secondary.btn-block(type='submit') Signin
+        button.btn.btn-primary.btn-block(type='submit') Signin
+        hr
+        a.btn.btn-dark.btn-block(href='/auth/facebook')
+          i.fa.fa-facebook.fa-lg
+          | &nbsp;
+          | Signin with Facebook
+
         div.sub 
           a(href='/users/new') Signup
-          | 
-          | /
-          |
-          a(href='/reset-password') Reset Password
+          
