@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const Question = require('../../models/question'); 
 const Answer = require('../../models/answer'); 
@@ -50,15 +49,4 @@ router.use((err, req, res, next) => {
   });
 });
 
-=======
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
-});
-
-
->>>>>>> 3c31045ce10196dec6d79aca4f482888c7c5d9ac
 module.exports = router;
