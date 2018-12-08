@@ -149,4 +149,8 @@ module.exports = (app, io) => {
   });
 
   return app;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3c31045ce10196dec6d79aca4f482888c7c5d9ac
