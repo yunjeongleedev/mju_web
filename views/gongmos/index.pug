@@ -4,25 +4,25 @@ include ../includes/_paginate
 
 block content
   .container
-    form.form-inline.search-input-group(action='/questions', method='GET')
+    form.form-inline.search-input-group(action='/gongmos', method='GET')
       i.fa.fa-search
       input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
 
     h1.main-title 
-      | Questions
-      if questions.total > 0
-        .small Total #{questions.total} question(s)
+      | Gongmos
+      if gongmos.total > 0
+        .small Total #{gongmos.total} gongmo(s)
 
-    if questions.total <= 0 
-      .alert.alert-info No questions available yet
+    if gongmos.total <= 0 
+      .alert.alert-info No gongmos available yet
     else
-      .questions
-        each question in questions.docs
-          .question
-            a.title(href=`/questions/${question.id}`)= question.title
-            include _question
+      .gongmos
+        each gongmo in gongmos.docs
+          .gongmo
+            a.title(href=`/gongmos/${gongmo.id}`)= gongmo.title
+            include _gongmo
 
-      +paginate(questions, '/questions', query)
+      +paginate(gongmos, '/gongmos', query)
 
     hr
-    a.btn.btn-primary(href='/questions/new') Ask Question
+    a.btn.btn-primary(href='/gongmos/new') Ask Gongmo

@@ -56,17 +56,17 @@ module.exports = io => {
   }));
 
   router.put('/:id', catchErrors(async (req, res, next) => {
-    const gongmos = await Gongmo.findById(req.params.id);
+    const gongmo = await Gongmo.findById(req.params.id);
 
-    if (!gongmos) {
+    if (!gongmo) {
       req.flash('danger', 'Not exist gongmos');
       return res.redirect('back');
     }
-    gongmos.title = req.body.title;
-    gongmos.content = req.body.content;
-    gongmos.tags = req.body.tags.split(" ").map(e => e.trim());
+    gongmo.title = req.body.title;
+    gongmo.content = req.body.content;
+    gongmo.tags = req.body.tags.split(" ").map(e => e.trim());
 
-    await gongmos.save();
+    await gongmo.save();
     req.flash('success', 'Successfully updated');
     res.redirect('/gongmos');
   }));
@@ -79,13 +79,13 @@ module.exports = io => {
 
   router.post('/', needAuth, catchErrors(async (req, res, next) => {
     const user = req.user;
-    var gongmos = new Gongmo({
+    var gongmo = new Gongmo({
       title: req.body.title,
       author: user._id,
       content: req.body.content,
       tags: req.body.tags.split(" ").map(e => e.trim()),
     });
-    await gongmos.save();
+    await gongmo.save();
     req.flash('success', 'Successfully posted');
     res.redirect('/gongmos');
   }));
@@ -94,24 +94,24 @@ module.exports = io => {
     const user = req.user;
     const gongmos = await Gongmo.findById(req.params.id);
 
-    if (!gongmos) {
-      req.flash('danger', 'Not exist gongmos');
+    if (!gongmo) {
+      req.flash('danger', 'Not exist gongmo');
       return res.redirect('back');
     }
 
     var answer = new Answer({
       author: user._id,
-      gongmos: gongmos._id,
+      gongmo: gongmo._id,
       content: req.body.content
     });
     await answer.save();
-    gongmos.numAnswers++;
-    await gongmos.save();
+    gongmo.numAnswers++;
+    await gongmo.save();
 
-    const url = `/gongmos/${gongmos._id}#${answer._id}`;
-    io.to(gongmos.author.toString())
-      .emit('answered', {url: url, gongmos: gongmos});
-    console.log('SOCKET EMIT', gongmos.author.toString(), 'answered', {url: url, gongmos: gongmos})
+    const url = `/gongmos/${gongmo._id}#${answer._id}`;
+    io.to(gongmo.author.toString())
+      .emit('answered', {url: url, gongmo: gongmo});
+    console.log('SOCKET EMIT', gongmo.author.toString(), 'answered', {url: url, gongmo: gongmo})
     req.flash('success', 'Successfully answered');
     res.redirect(`/gongmos/${req.params.id}`);
   }));

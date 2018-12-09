@@ -16,6 +16,6 @@ var schema = new Schema({
   toObject: {virtuals: true}
 });
 schema.plugin(mongoosePaginate);
-var Question = mongoose.model('Question', schema);
+var Gongmo = mongoose.model('Gongmo', schema);
 
-module.exports = Question;
+module.exports = Gongmo;

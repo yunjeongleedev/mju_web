@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var sassMiddleware = require('node-sass-middleware');
+var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
@@ -14,6 +14,7 @@ var passportSocketIo = require('passport.socketio');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var questions = require('./routes/questions');
+var gongmos = require('./routes/gongmos')
 
 var passportConfig = require('./lib/passport-config');
 
@@ -52,13 +53,13 @@ module.exports = (app, io) => {
   app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 
   // sass, scss를 사용할 수 있도록
-  // app.use(sassMiddleware({
-  //   src: path.join(__dirname, 'public'),
-  //   dest: path.join(__dirname, 'public'),
-  //   indentedSyntax: false, // true = .sass and false = .scss
-  //   debug: true,
-  //   sourceMap: true
-  // }));
+  app.use(sassMiddleware({
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    indentedSyntax: false, // true = .sass and false = .scss
+    debug: true,
+    sourceMap: true
+  }));
 
   const sessionStore = new session.MemoryStore();
   const sessionId = 'mjoverflow.sid';
@@ -127,6 +128,7 @@ module.exports = (app, io) => {
   app.use('/', index);
   app.use('/users', users);
   app.use('/questions', questions(io)); // socket.io를 인자로 주기 위해 function으로 변경
+  app.use('/gongmos', gongmos(io));
   require('./routes/auth')(app, passport);
   app.use('/api', require('./routes/api'));
 

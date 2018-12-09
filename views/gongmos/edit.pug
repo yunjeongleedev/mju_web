@@ -2,8 +2,8 @@ extends ../layout
 
 block content
   .container
-    h1.main-title Edit Question
-    form(action=`/questions/${question.id}`, method="POST")
+    h1.main-title Edit Gongmo
+    form(action=`/gongmos/${gongmo.id}`, method="POST")
       input(type="hidden", name="_method", value="PUT")
       include _form
-      button.btn.btn-outline-primary(type="submit") Update Your Question
+      button.btn.btn-outline-primary(type="submit") Update Your Gongmo
