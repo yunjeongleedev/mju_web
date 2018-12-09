@@ -5,7 +5,7 @@
  */
 var express = require('express');
 var app = express();
-var debug = require('debug')('ex01:server');
+var debug = require('debug')('mju_web:server');
 var http = require('http');
 
 /**

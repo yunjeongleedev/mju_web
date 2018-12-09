@@ -17,7 +17,6 @@ router.use(catchErrors(async (req, res, next) => {
 }));
 
 router.use('/questions', require('./questions'));
-router.use('/gongmos', require('./gongmos'));
 
 // Like for Question
 router.post('/questions/:id/like', catchErrors(async (req, res, next) => {
@@ -34,22 +33,6 @@ router.post('/questions/:id/like', catchErrors(async (req, res, next) => {
     ]);
   }
   return res.json(question);
-}));
-// Like for Gongmo
-router.post('/gongmos/:id/like', catchErrors(async (req, res, next) => {
-  const gongmo = await Gongmo.findById(req.params.id);
-  if (!gongmo) {
-    return next({status: 404, msg: 'Not exist gongmo'});
-  }
-  var likeLog = await LikeLog.findOne({author: req.user._id, gongmo: gongmo._id});
-  if (!likeLog) {
-    gongmo.numLikes++;
-    await Promise.all([
-      gongmo.save(),
-      LikeLog.create({author: req.user._id, gongmo: gongmo._id})
-    ]);
-  }
-  return res.json(gongmo);
 }));
 
 // Like for Answer

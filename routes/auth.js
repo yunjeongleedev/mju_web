@@ -8,11 +8,6 @@ module.exports = (app, passport) => {
     failureRedirect : '/signin', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));
-  app.post('/signin', passport.authenticate('local-signin', {
-    successRedirect : '/gongmos', // redirect to the secure profile section
-    failureRedirect : '/signin', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
 
   app.get('/auth/facebook',
     passport.authenticate('facebook', { scope : 'email' })
@@ -25,15 +20,6 @@ module.exports = (app, passport) => {
     }), (req, res, next) => {
       req.flash('success', 'Welcome!');
       res.redirect('/questions');
-    }
-  );
-  app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-      failureRedirect : '/signin',
-      failureFlash : true // allow flash messages
-    }), (req, res, next) => {
-      req.flash('success', 'Welcome!');
-      res.redirect('/gongmos');
     }
   );
 
