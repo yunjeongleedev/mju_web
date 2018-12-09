@@ -9,7 +9,7 @@ block content
       input.form-control.mr-sm-2(type='text', name='term', placeholder='Search', aria-label='Search', value=term)
 
     h1.main-title 
-      | Questions
+      | 공모전
       if questions.total > 0
         .small Total #{questions.total} question(s)
 
@@ -25,4 +25,4 @@ block content
       +paginate(questions, '/questions', query)
 
     hr
-    a.btn.btn-primary(href='/questions/new') Ask Question
+    a.btn.btn-primary(href='/questions/new') 공모전 업로드

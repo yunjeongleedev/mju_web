@@ -4,6 +4,12 @@ block content
   .container
     h1.main-title= question.title
 
+    div.card
+      img(class = 'card-img-top' src = '/images/음성아이디어.jpg' alt = 'Card image cap')
+      div.card-body
+        h6.card-title
+          b 산업관광 아이디어 공모전
+        p.card-text 기획/아이디어
     .question.show
       //- .content= question.content
       include _question
@@ -21,7 +27,7 @@ block content
       
     if question.numAnswers > 0
       hr
-      h3 #{question.numAnswers} Answer(s)
+      h3 #{question.numAnswers} 댓글
       .answers.show
         each answer in answers
           include _answer
@@ -29,8 +35,8 @@ block content
     if currentUser
       form(action=`/questions/${question.id}/answers`, method='POST')
         .form-group
-          label(for='answer') Your Answer
+          label(for='answer') 댓글
           textarea.form-control(name="content", rows="5")
-        button.btn.btn-primary(type="submit") Post Your Answer
+        button.btn.btn-primary(type="submit") 댓글 작성
 
 
