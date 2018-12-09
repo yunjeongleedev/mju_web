@@ -11,6 +11,11 @@ block content
 
       dt.col-sm-3 Created At
       dd.col-sm-9= user.createdAt
+      
+      if user.facebook.id
+        dt.col-sm-3 Facebook
+        dd.col-sm-9
+          img.img-fluid.rounded-circle(src= user.facebook.photo)
 
     hr
     p
@@ -18,4 +23,4 @@ block content
       | 
       a.btn.btn-outline-primary(href=`/users/${user._id}/edit`) Edit
       | 
-      a.btn.btn-outline-danger(href=`/users/${user._id}?_method=DELETE`) Delete
+      a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`) Delete

@@ -1,9 +1,7 @@
 const express = require('express');
-const Question = require('../../models/question');
-const Gongmo = require('../../models/gongmo');
+const Question = require('../../models/question'); 
 const Answer = require('../../models/answer'); 
 const LikeLog = require('../../models/like-log'); 
-const GongmoLikeLog = require('../../models/gongmo-like-log'); 
 const catchErrors = require('../../lib/async-error');
 
 const router = express.Router();
@@ -50,6 +48,5 @@ router.use((err, req, res, next) => {
     msg: err.msg || err
   });
 });
-
 
 module.exports = router;

@@ -20,13 +20,6 @@ a:hover {
   margin-left: 10em;
   margin-right: 10em; }
 
-.card {
-  width: 18rem;
-  align-content: left;
-  vspace: 10px;
-  hspace: 10px;
-}
-
 .form-actions {
   padding: 19px 20px 20px;
   margin-top: 20px;

@@ -4,14 +4,8 @@ block content
   .container
     h1.main-title= question.title
 
-    div.card
-      img(class = 'card-img-top' src = '/images/음성아이디어.jpg' alt = 'Card image cap')
-      div.card-body
-        h6.card-title
-          b 산업관광 아이디어 공모전
-        p.card-text 기획/아이디어
     .question.show
-      //- .content= question.content
+      .content= question.content
       include _question
 
       .buttons
@@ -21,9 +15,9 @@ block content
             span #[i.fa.fa-thumbs-up] Like
           if question.author && question.author.id == currentUser.id
             | 
-            a.btn.btn-outline-secondary(href=`/questions/${question.id}/edit`) Edit
+            a.btn.btn-outline-secondary(href=`/questions/${question.id}/edit`) 수정
             | 
-            a.btn.btn-outline-danger.need-confirm-btn(href=`/questions/${question.id}?_method=delete`) Delete
+            a.btn.btn-outline-danger.need-confirm-btn(href=`/questions/${question.id}?_method=delete`) 삭제
       
     if question.numAnswers > 0
       hr
@@ -35,8 +29,9 @@ block content
     if currentUser
       form(action=`/questions/${question.id}/answers`, method='POST')
         .form-group
-          label(for='answer') 댓글
+          label(for='answer') 내 댓글
           textarea.form-control(name="content", rows="5")
-        button.btn.btn-primary(type="submit") 댓글 작성
+        button.btn.btn-primary(type="submit") 댓글 등록
 
 
+  script(src='/javascripts/question_client.js')
