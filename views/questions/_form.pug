@@ -1,9 +1,30 @@
 .form-group
-  label(for="title") Title
-  input.form-control(type="text", name="title", placeholder="What's your question?", value=question.title)
+  label(for="title") 제목
+  input.form-control(type="text", name="title", placeholder="제목을 입력하세요.", value=question.title)
 .form-group
-  label(for="question") Question
-  textarea.form-control(name="content", rows="5")= question.content
+  label(for="question") 공모요강
+  textarea.form-control(name="content", rows="10")= question.content
 .form-group
-  label(for="tags") Tags
-  input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=question.tags ? question.tags.join(" ") : "")
+  label(for="tags") 분야
+  input.form-control(type="text", name="tags", placeholder="태그는 스페이스바로 구분됩니다.", value=question.tags ? question.tags.join(" ") : "")
+.form-group
+  label(for="imgURL") 이미지 URL
+  input.form-control(type="text", name="imgURL", placeholder="이미지 URL을 입력하세요.", value=question.imgURL)
+.form-group
+  label(for="organizer") 주최사
+  input.form-control(type="text", name="organizer", placeholder="주최사를 입력하세요.", value=question.organizer)
+.form-group
+  label(for="applicant") 응시대상
+  textarea.form-control(name="content", rows="5")= question.applicant
+.form-group
+  label(for="startDate") 접수시작일
+  input.form-control(type="date", name="startDate", value=question.startDate)
+.form-group
+  label(for="endDate") 접수마감일
+  input.form-control(type="date", name="endDate", value=question.endDate)
+.form-group
+  label(for="manager") 담당자
+  input.form-control(type="text", name="manager", placeholder="담당자 이름을 입력하세요.", value=question.manager)
+.form-group
+  label(for="phoneNum") 연락처
+  input.form-control(type="text", name="title", placeholder="연락처를 입력하세요.", value=question.phoneNum)
