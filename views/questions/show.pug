@@ -5,12 +5,19 @@ block content
     h1.main-title= question.title
 
     .question.show
+      .imgURL= question.imgURL
       .content= question.content
+      .organizer= question.organizer
+      .applicant= question.applicant
+      .manager= question.manager
+      .startDate= question.startDate
+      .endDate= question.endDate
+      .phoneNum= question.phoneNum
       include _question
 
       .buttons
         if currentUser
-          button.btn.btn-primary.question-like-btn(data-id=question.id) 
+          button.btn.btn-info.question-like-btn(data-id=question.id) 
             span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
             span #[i.fa.fa-thumbs-up] Like
           if question.author && question.author.id == currentUser.id
@@ -31,7 +38,7 @@ block content
         .form-group
           label(for='answer') 내 댓글
           textarea.form-control(name="content", rows="5")
-        button.btn.btn-primary(type="submit") 댓글 등록
+        button.btn.btn-info(type="submit") 댓글 등록
 
 
   script(src='/javascripts/question_client.js')
