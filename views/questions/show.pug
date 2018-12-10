@@ -5,14 +5,20 @@ block content
     h1.main-title= question.title
 
     .question.show
-      img(src= question.imgURL alt="no image" align="left" hspace="30")
-      .content= question.content
+      img(src= question.imgURL alt="no image")
+      br
+      br
+      div 공모요강
+        .content(style="word-wrap: break-word")= question.content
       hr
-      .manager= question.manager
+      div 담당자
+        .manager(style="word-wrap: break-word")= question.manager
       hr
-      .startDate= question.startDate
+      div 접수시작일
+        .startDate(style="word-wrap: break-word")= question.startDate
       hr
-      .endDate= question.endDate
+      div 접수마감일
+        .endDate(style="word-wrap: break-word")= question.endDate
       include _question
 
       .buttons
