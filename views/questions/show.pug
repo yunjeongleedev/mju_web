@@ -5,14 +5,14 @@ block content
     h1.main-title= question.title
 
     .question.show
-      .imgURL= question.imgURL
+      img(src= question.imgURL alt="no image" align="left" hspace="30")
       .content= question.content
-      .organizer= question.organizer
-      .applicant= question.applicant
+      hr
       .manager= question.manager
+      hr
       .startDate= question.startDate
+      hr
       .endDate= question.endDate
-      .phoneNum= question.phoneNum
       include _question
 
       .buttons

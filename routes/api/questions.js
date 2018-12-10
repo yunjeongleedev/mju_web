@@ -29,10 +29,7 @@ router.post('', catchErrors(async (req, res, next) => {
     title: req.body.title,
     author: req.user._id,
     content: req.body.content,
-    organizer: req.body.organizer,
-    applicant: req.body.applicant,
     manager: req.body.manager,
-    phoneNum: req.body.phoneNum,
     imgURL: req.body.imgURL,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
@@ -53,10 +50,7 @@ router.put('/:id', catchErrors(async (req, res, next) => {
   }
   question.title = req.body.title;
   question.content = req.body.content;
-  question.organizer = req.body.organizer;
-  question.applicant = req.body.applicant;
   question.manager = req.body.manager;
-  question.phoneNum = req.body.phoneNum;
   question.imgURL = req.body.imgURL;
   question.startDate = req.body.startDate;
   question.endDate = req.body.endDate;

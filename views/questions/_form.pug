@@ -11,12 +11,6 @@
   label(for="imgURL") 이미지 URL
   input.form-control(type="text", name="imgURL", placeholder="이미지 URL을 입력하세요.", value=question.imgURL)
 .form-group
-  label(for="organizer") 주최사
-  input.form-control(type="text", name="organizer", placeholder="주최사를 입력하세요.", value=question.organizer)
-.form-group
-  label(for="applicant") 응시대상
-  textarea.form-control(name="content", rows="5")= question.applicant
-.form-group
   label(for="startDate") 접수시작일
   input.form-control(type="date", name="startDate", value=question.startDate)
 .form-group
@@ -25,6 +19,3 @@
 .form-group
   label(for="manager") 담당자
   input.form-control(type="text", name="manager", placeholder="담당자 이름을 입력하세요.", value=question.manager)
-.form-group
-  label(for="phoneNum") 연락처
-  input.form-control(type="text", name="title", placeholder="연락처를 입력하세요.", value=question.phoneNum)
