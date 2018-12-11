@@ -5,7 +5,7 @@
     color: #bbb;
   }
 }
-.question {
+.gongmo {
   line-height: 160%;
   margin-bottom: 2em;
   .title {
@@ -33,7 +33,7 @@
   font-weight: bold;
   color: #0f5ca6;
 }
-.questions {
+.gongmos {
   .content {
     max-height: 5em;
     overflow: hidden;
@@ -69,7 +69,7 @@
   }
 }
 
-.question-like-btn, .answer-like-btn {
+.gongmo-like-btn, .answer-like-btn {
   .for-loading {display: none;}
   cursor: pointer; 
 

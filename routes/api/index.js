@@ -1,5 +1,5 @@
 const express = require('express');
-const Question = require('../../models/question'); 
+const gongmo = require('../../models/gongmo'); 
 const Answer = require('../../models/answer'); 
 const LikeLog = require('../../models/like-log'); 
 const catchErrors = require('../../lib/async-error');
@@ -14,23 +14,23 @@ router.use(catchErrors(async (req, res, next) => {
   }
 }));
 
-router.use('/questions', require('./questions'));
+router.use('/gongmos', require('./gongmos'));
 
-// Like for Question
-router.post('/questions/:id/like', catchErrors(async (req, res, next) => {
-  const question = await Question.findById(req.params.id);
-  if (!question) {
-    return next({status: 404, msg: 'Not exist question'});
+// Like for gongmo
+router.post('/gongmos/:id/like', catchErrors(async (req, res, next) => {
+  const gongmo = await gongmo.findById(req.params.id);
+  if (!gongmo) {
+    return next({status: 404, msg: 'Not exist gongmo'});
   }
-  var likeLog = await LikeLog.findOne({author: req.user._id, question: question._id});
+  var likeLog = await LikeLog.findOne({author: req.user._id, gongmo: gongmo._id});
   if (!likeLog) {
-    question.numLikes++;
+    gongmo.numLikes++;
     await Promise.all([
-      question.save(),
-      LikeLog.create({author: req.user._id, question: question._id})
+      gongmo.save(),
+      LikeLog.create({author: req.user._id, gongmo: gongmo._id})
     ]);
   }
-  return res.json(question);
+  return res.json(gongmo);
 }));
 
 // Like for Answer

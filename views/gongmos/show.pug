@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title= gongmo.title
+
+    .gongmo.show
+      include _gongmo
+
+      .buttons
+        if currentUser
+          button.btn.btn-info.gongmo-like-btn(data-id=gongmo.id) 
+            span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
+            span #[i.fa.fa-thumbs-up] Like
+          if gongmo.author && gongmo.author.id == currentUser.id
+            | 
+            a.btn.btn-outline-secondary(href=`/gongmos/${gongmo.id}/edit`) 수정
+            | 
+            a.btn.btn-outline-danger.need-confirm-btn(href=`/gongmos/${gongmo.id}?_method=delete`) 삭제
+      
+    if gongmo.numAnswers > 0
+      hr
+      h3 #{gongmo.numAnswers} 댓글
+      .answers.show
+        each answer in answers
+          include _answer
+
+    if currentUser
+      form(action=`/gongmos/${gongmo.id}/answers`, method='POST')
+        .form-group
+          label(for='answer') 내 댓글
+          textarea.form-control(name="content", rows="5")
+        button.btn.btn-info(type="submit") 댓글 등록
+
+
+  script(src='/javascripts/gongmo_client.js')

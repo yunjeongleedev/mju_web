@@ -88,14 +88,14 @@ a:hover {
   font-size: 1rem;
   color: #bbb; }
 
-.question {
+.gongmo {
   line-height: 160%;
   margin-bottom: 2em; }
-  .question .title {
+  .gongmo .title {
     font-size: 1.3rem; }
-  .question .content {
+  .gongmo .content {
     color: #666; }
-  .question .tags {
+  .gongmo .tags {
     margin: 0.5em 0; }
 
 .author {
@@ -112,7 +112,7 @@ a:hover {
   font-weight: bold;
   color: #0f5ca6; }
 
-.questions .content {
+.gongmos .content {
   max-height: 5em;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -138,18 +138,18 @@ a:hover {
     margin-bottom: 0.5em;
     color: #888; }
 
-.question-like-btn, .answer-like-btn {
+.gongmo-like-btn, .answer-like-btn {
   cursor: pointer; }
-  .question-like-btn .for-loading, .answer-like-btn .for-loading {
+  .gongmo-like-btn .for-loading, .answer-like-btn .for-loading {
     display: none; }
-  .question-like-btn.loading, .answer-like-btn.loading {
+  .gongmo-like-btn.loading, .answer-like-btn.loading {
     filter: opacity(30%);
     cursor: wait; }
-    .question-like-btn.loading > span, .answer-like-btn.loading > span {
+    .gongmo-like-btn.loading > span, .answer-like-btn.loading > span {
       display: none; }
-    .question-like-btn.loading .for-loading, .answer-like-btn.loading .for-loading {
+    .gongmo-like-btn.loading .for-loading, .answer-like-btn.loading .for-loading {
       display: inline-block; }
-  .question-like-btn.disabled, .answer-like-btn.disabled {
+  .gongmo-like-btn.disabled, .answer-like-btn.disabled {
     color: #bbb;
     cursor: default; }
 

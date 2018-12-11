@@ -1,0 +1,30 @@
+img(src= gongmo.imgURL alt="no image")
+br
+br
+div <공모요강, 응시대상>
+  .content(style="word-wrap: break-word")= gongmo.content
+hr
+div <주최사, 담당자, 연락처>
+  .manager(style="word-wrap: break-word")= gongmo.manager
+hr
+div <접수시작일>
+  .startDate(style="word-wrap: break-word")= gongmo.startDate
+hr
+div <접수마감일>
+  .endDate(style="word-wrap: break-word")= gongmo.endDate
+.tags.badges
+  each tag in gongmo.tags
+    span.badge.badge-phill.badge-secondary= tag
+    | 
+.row
+  .col-sm
+    .numbers.
+      #[span.number.num-likes= gongmo.numLikes] likes,
+      #[span.number.num-answers= gongmo.numAnswers] answers,
+      #[span.number.num-reads= gongmo.numReads] reads
+  .col-sm
+    .author
+      | asked on #{moment(gongmo.createdAt).format('YYYY-MM-DD')}
+      if gongmo.author
+        | 
+        | by #[a(href=`/users/${gongmo.author.id}`)= gongmo.author.name] 

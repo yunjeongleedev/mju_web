@@ -1,5 +1,5 @@
 const express = require('express');
-const Question = require('../models/question');
+const Gongmo = require('../models/gongmo');
 const Answer = require('../models/answer'); 
 const catchErrors = require('../lib/async-error');
 
@@ -17,7 +17,7 @@ module.exports = io => {
     }
   }
 
-  /* GET questions listing. */
+  /* GET gongmos listing. */
   router.get('/', catchErrors(async (req, res, next) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -32,61 +32,61 @@ module.exports = io => {
         {imgURL: {'$regex': term, '$options': 'i'}}
       ]};
     }
-    const questions = await Question.paginate(query, {
+    const gongmos = await Gongmo.paginate(query, {
       sort: {createdAt: -1}, 
       populate: 'author', 
       page: page, limit: limit
     });
-    res.render('questions/index', {questions: questions, term: term, query: req.query});
+    res.render('gongmos/index', {gongmos: gongmos, term: term, query: req.query});
   }));
 
   router.get('/new', needAuth, (req, res, next) => {
-    res.render('questions/new', {question: {}});
+    res.render('gongmos/new', {gongmo: {}});
   });
 
   router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
-    const question = await Question.findById(req.params.id);
-    res.render('questions/edit', {question: question});
+    const gongmo = await Gongmo.findById(req.params.id);
+    res.render('gongmos/edit', {gongmo: gongmo});
   }));
 
   router.get('/:id', catchErrors(async (req, res, next) => {
-    const question = await Question.findById(req.params.id).populate('author');
-    const answers = await Answer.find({question: question.id}).populate('author');
-    question.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
+    const gongmo = await Gongmo.findById(req.params.id).populate('author');
+    const answers = await Answer.find({gongmo: gongmo.id}).populate('author');
+    gongmo.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
 
-    await question.save();
-    res.render('questions/show', {question: question, answers: answers});
+    await gongmo.save();
+    res.render('gongmos/show', {gongmo: gongmo, answers: answers});
   }));
 
   router.put('/:id', catchErrors(async (req, res, next) => {
-    const question = await Question.findById(req.params.id);
+    const gongmo = await Gongmo.findById(req.params.id);
 
-    if (!question) {
-      req.flash('danger', 'Not exist question');
+    if (!gongmo) {
+      req.flash('danger', 'Not exist gongmo');
       return res.redirect('back');
     }
-    question.title = req.body.title;
-    question.content = req.body.content;
-    question.manager = req.body.manager;
-    question.imgURL = req.body.imgURL;
-    question.startDate = req.body.startDate;
-    question.endDate = req.body.endDate;
-    question.tags = req.body.tags.split(" ").map(e => e.trim());
+    gongmo.title = req.body.title;
+    gongmo.content = req.body.content;
+    gongmo.manager = req.body.manager;
+    gongmo.imgURL = req.body.imgURL;
+    gongmo.startDate = req.body.startDate;
+    gongmo.endDate = req.body.endDate;
+    gongmo.tags = req.body.tags.split(" ").map(e => e.trim());
 
-    await question.save();
+    await gongmo.save();
     req.flash('success', 'Successfully updated');
-    res.redirect('/questions');
+    res.redirect('/gongmos');
   }));
 
   router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
-    await Question.findOneAndRemove({_id: req.params.id});
+    await Gongmo.findOneAndRemove({_id: req.params.id});
     req.flash('success', 'Successfully deleted');
-    res.redirect('/questions');
+    res.redirect('/gongmos');
   }));
 
   router.post('/', needAuth, catchErrors(async (req, res, next) => {
     const user = req.user;
-    var question = new Question({
+    var gongmo = new Gongmo({
       title: req.body.title,
       author: user._id,
       content: req.body.content,
@@ -96,35 +96,35 @@ module.exports = io => {
       imgURL: req.body.imgURL,
       tags: req.body.tags.split(" ").map(e => e.trim()),
     });
-    await question.save();
+    await gongmo.save();
     req.flash('success', 'Successfully posted');
-    res.redirect('/questions');
+    res.redirect('/gongmos');
   }));
 
   router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
     const user = req.user;
-    const question = await Question.findById(req.params.id);
+    const gongmo = await Gongmo.findById(req.params.id);
 
-    if (!question) {
-      req.flash('danger', 'Not exist question');
+    if (!gongmo) {
+      req.flash('danger', 'Not exist gongmo');
       return res.redirect('back');
     }
 
     var answer = new Answer({
       author: user._id,
-      question: question._id,
+      gongmo: gongmo._id,
       content: req.body.content,
     });
     await answer.save();
-    question.numAnswers++;
-    await question.save();
+    gongmo.numAnswers++;
+    await gongmo.save();
 
-    const url = `/questions/${question._id}#${answer._id}`;
-    io.to(question.author.toString())
-      .emit('answered', {url: url, question: question});
-    console.log('SOCKET EMIT', question.author.toString(), 'answered', {url: url, question: question})
+    const url = `/gongmos/${gongmo._id}#${answer._id}`;
+    io.to(gongmo.author.toString())
+      .emit('answered', {url: url, gongmo: gongmo});
+    console.log('SOCKET EMIT', gongmo.author.toString(), 'answered', {url: url, gongmo: gongmo})
     req.flash('success', 'Successfully answered');
-    res.redirect(`/questions/${req.params.id}`);
+    res.redirect(`/gongmos/${req.params.id}`);
   }));
 
   return router;

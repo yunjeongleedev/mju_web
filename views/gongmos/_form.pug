@@ -1,0 +1,21 @@
+.form-group
+  label(for="title") 제목
+  input.form-control(type="text", name="title", placeholder="제목을 입력하세요.", value=gongmo.title)
+.form-group
+  label(for="gongmo") 공모요강, 응시대상
+  textarea.form-control(name="content", rows="10")= gongmo.content
+.form-group
+  label(for="tags") 분야
+  input.form-control(type="text", name="tags", placeholder="태그는 스페이스바로 구분됩니다.", value=gongmo.tags ? gongmo.tags.join(" ") : "")
+.form-group
+  label(for="imgURL") 이미지 URL
+  input.form-control(type="text", name="imgURL", placeholder="이미지 URL을 입력하세요.", value=gongmo.imgURL)
+.form-group
+  label(for="startDate") 접수시작일
+  input.form-control(type="date", name="startDate", value=gongmo.startDate)
+.form-group
+  label(for="endDate") 접수마감일
+  input.form-control(type="date", name="endDate", value=gongmo.endDate)
+.form-group
+  label(for="manager") 주최사, 담당자, 연락처
+  input.form-control(type="text", name="manager", placeholder="담당자 이름을 입력하세요.", value=gongmo.manager)
