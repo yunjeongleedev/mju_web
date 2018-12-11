@@ -3,7 +3,6 @@ extends ../layout
 block content
   .container
     h1.main-title 공모전 수정
-    form(action=`/questions/${question.id}`, method="POST")
-      input(type="hidden", name="_method", value="PUT")
+    form(action=`/questions/${question.id}?_method=PUT`, method="POST")
       include _form
       button.btn.btn-outline-info(type="submit") 공모전 업데이트
