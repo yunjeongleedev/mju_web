@@ -1,6 +1,6 @@
 const express = require('express');
 const Gongmo = require('../models/gongmo');
-const Answer = require('../models/answer'); 
+const Comment = require('../models/comment'); 
 const catchErrors = require('../lib/async-error');
 
 
@@ -51,11 +51,11 @@ module.exports = io => {
 
   router.get('/:id', catchErrors(async (req, res, next) => {
     const gongmo = await Gongmo.findById(req.params.id).populate('author');
-    const answers = await Answer.find({gongmo: gongmo.id}).populate('author');
+    const comments = await Comment.find({gongmo: gongmo.id}).populate('author');
     gongmo.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
 
     await gongmo.save();
-    res.render('gongmos/show', {gongmo: gongmo, answers: answers});
+    res.render('gongmos/show', {gongmo: gongmo, comments: comments});
   }));
 
   router.put('/:id', catchErrors(async (req, res, next) => {
@@ -101,7 +101,7 @@ module.exports = io => {
     res.redirect('/gongmos');
   }));
 
-  router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
+  router.post('/:id/comments', needAuth, catchErrors(async (req, res, next) => {
     const user = req.user;
     const gongmo = await Gongmo.findById(req.params.id);
 
@@ -110,20 +110,20 @@ module.exports = io => {
       return res.redirect('back');
     }
 
-    var answer = new Answer({
+    var comment = new Comment({
       author: user._id,
       gongmo: gongmo._id,
       content: req.body.content,
     });
-    await answer.save();
-    gongmo.numAnswers++;
+    await comment.save();
+    gongmo.numComments++;
     await gongmo.save();
 
-    const url = `/gongmos/${gongmo._id}#${answer._id}`;
+    const url = `/gongmos/${gongmo._id}#${comment._id}`;
     io.to(gongmo.author.toString())
-      .emit('answered', {url: url, gongmo: gongmo});
-    console.log('SOCKET EMIT', gongmo.author.toString(), 'answered', {url: url, gongmo: gongmo})
-    req.flash('success', 'Successfully answered');
+      .emit('commented', {url: url, gongmo: gongmo});
+    console.log('SOCKET EMIT', gongmo.author.toString(), 'commented', {url: url, gongmo: gongmo})
+    req.flash('success', 'Successfully commented');
     res.redirect(`/gongmos/${req.params.id}`);
   }));
 

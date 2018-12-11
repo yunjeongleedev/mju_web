@@ -48,7 +48,7 @@
     margin: 1em 0;
   }
 
-  .answer {
+  .comment {
     position: relative;
     .like-badge {
       text-align: center;
@@ -69,7 +69,7 @@
   }
 }
 
-.gongmo-like-btn, .answer-like-btn {
+.gongmo-like-btn, .comment-like-btn {
   .for-loading {display: none;}
   cursor: pointer; 
 

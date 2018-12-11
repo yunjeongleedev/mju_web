@@ -13,6 +13,6 @@ var schema = new Schema({
   toObject: {virtuals: true}
 });
 schema.plugin(mongoosePaginate);
-var Answer = mongoose.model('Answer', schema);
+var Comment = mongoose.model('Comment', schema);
 
-module.exports = Answer;
+module.exports = Comment;

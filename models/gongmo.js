@@ -10,7 +10,7 @@ var schema = new Schema({
   manager: {type: String, trim: true, required: true},
   tags: [String],
   numLikes: {type: Number, default: 0},
-  numAnswers: {type: Number, default: 0},
+  numComments: {type: Number, default: 0},
   numReads: {type: Number, default: 0},
   createdAt: {type: Date, default: Date.now},
   startDate: {type: Date, trim: true, required: true},

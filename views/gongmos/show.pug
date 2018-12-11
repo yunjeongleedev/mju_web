@@ -18,17 +18,17 @@ block content
             | 
             a.btn.btn-outline-danger.need-confirm-btn(href=`/gongmos/${gongmo.id}?_method=delete`) 삭제
       
-    if gongmo.numAnswers > 0
+    if gongmo.numComments > 0
       hr
-      h3 #{gongmo.numAnswers} 댓글
-      .answers.show
-        each answer in answers
-          include _answer
+      h3 #{gongmo.numComments} 댓글
+      .comments.show
+        each comment in comments
+          include _comment
 
     if currentUser
-      form(action=`/gongmos/${gongmo.id}/answers`, method='POST')
+      form(action=`/gongmos/${gongmo.id}/comments`, method='POST')
         .form-group
-          label(for='answer') 내 댓글
+          label(for='comment') 내 댓글
           textarea.form-control(name="content", rows="5")
         button.btn.btn-info(type="submit") 댓글 등록
 

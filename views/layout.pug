@@ -46,12 +46,12 @@ html
         socket.emit('join');
       });
 
-      socket.on('answered', function(data) {
-        // answered를 받으면 링크를 notifier로 출력한다.
+      socket.on('commented', function(data) {
+        // commented를 받으면 링크를 notifier로 출력한다.
         var title = $('<div></div>').text(data.gongmo.title).html();
         $.notify({
           icon: 'fa fa-bell',
-          title: 'You hace a new answer.',
+          title: 'You hace a new comment.',
           url: data.url,
           message: title
         });

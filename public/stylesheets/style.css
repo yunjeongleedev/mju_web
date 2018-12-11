@@ -123,33 +123,33 @@ a:hover {
 .show .buttons {
   margin: 1em 0; }
 
-.show .answer {
+.show .comment {
   position: relative;
   margin-bottom: 1em; }
-  .show .answer .like-badge {
+  .show .comment .like-badge {
     text-align: center;
     padding: 0.5em;
     position: absolute; }
-    .show .answer .like-badge .button {
+    .show .comment .like-badge .button {
       font-size: 0.8em; }
-  .show .answer .card-body {
+  .show .comment .card-body {
     padding-left: 4em; }
-  .show .answer .content {
+  .show .comment .content {
     margin-bottom: 0.5em;
     color: #888; }
 
-.gongmo-like-btn, .answer-like-btn {
+.gongmo-like-btn, .comment-like-btn {
   cursor: pointer; }
-  .gongmo-like-btn .for-loading, .answer-like-btn .for-loading {
+  .gongmo-like-btn .for-loading, .comment-like-btn .for-loading {
     display: none; }
-  .gongmo-like-btn.loading, .answer-like-btn.loading {
+  .gongmo-like-btn.loading, .comment-like-btn.loading {
     filter: opacity(30%);
     cursor: wait; }
-    .gongmo-like-btn.loading > span, .answer-like-btn.loading > span {
+    .gongmo-like-btn.loading > span, .comment-like-btn.loading > span {
       display: none; }
-    .gongmo-like-btn.loading .for-loading, .answer-like-btn.loading .for-loading {
+    .gongmo-like-btn.loading .for-loading, .comment-like-btn.loading .for-loading {
       display: inline-block; }
-  .gongmo-like-btn.disabled, .answer-like-btn.disabled {
+  .gongmo-like-btn.disabled, .comment-like-btn.disabled {
     color: #bbb;
     cursor: default; }
 
