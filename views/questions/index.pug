@@ -20,7 +20,9 @@ block content
         each question in questions.docs
           .question
             a.title(href=`/questions/${question.id}`)= question.title
-            include _question
+            br
+            br
+            img(src=question.imgURL)
 
       +paginate(questions, '/questions', query)
 

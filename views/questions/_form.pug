@@ -2,7 +2,7 @@
   label(for="title") 제목
   input.form-control(type="text", name="title", placeholder="제목을 입력하세요.", value=question.title)
 .form-group
-  label(for="question") 공모요강
+  label(for="question") 공모요강, 응시대상
   textarea.form-control(name="content", rows="10")= question.content
 .form-group
   label(for="tags") 분야
@@ -17,5 +17,5 @@
   label(for="endDate") 접수마감일
   input.form-control(type="date", name="endDate", value=question.endDate)
 .form-group
-  label(for="manager") 담당자
+  label(for="manager") 주최사, 담당자
   input.form-control(type="text", name="manager", placeholder="담당자 이름을 입력하세요.", value=question.manager)

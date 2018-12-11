@@ -8,18 +8,18 @@ block content
       img(src= question.imgURL alt="no image")
       br
       br
-      div 공모요강
+      div <공모요강, 응시대상>
         .content(style="word-wrap: break-word")= question.content
       hr
-      div 담당자
+      div <주최사, 담당자>
         .manager(style="word-wrap: break-word")= question.manager
       hr
-      div 접수시작일
+      div <접수시작일>
         .startDate(style="word-wrap: break-word")= question.startDate
       hr
-      div 접수마감일
+      div <접수마감일>
         .endDate(style="word-wrap: break-word")= question.endDate
-      include _question
+      //- include _question
 
       .buttons
         if currentUser
