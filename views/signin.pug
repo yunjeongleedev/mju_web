@@ -16,7 +16,11 @@ block content
           placeholder='Password', required, autofocus
         )
         button.btn.btn-info.btn-block(type='submit') Signin
+        hr
+        a.btn.btn-dark.btn-block(href='/auth/facebook')
+          i.fa.fa-facebook.fa-lg
+          | &nbsp;
+          | Signin with Facebook
 
         div.sub 
           a(href='/users/new') Signup
-          

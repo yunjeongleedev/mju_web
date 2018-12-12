@@ -12,6 +12,11 @@ block content
       dt.col-sm-3 Created At
       dd.col-sm-9= user.createdAt
       
+      if user.facebook.id
+        dt.col-sm-3 Facebook
+        dd.col-sm-9
+          img.img-fluid.rounded-circle(src= user.facebook.photo)
+
     hr
     p
       a.btn.btn-outline-secondary(href='/users/') List
